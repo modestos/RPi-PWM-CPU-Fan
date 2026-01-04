@@ -1,0 +1,16 @@
+[Unit]
+Description=PWM Fan Control
+After=network-online.target
+
+[Service]
+Type=simple
+User=root
+ExecStart=/usr/bin/env python3 -u cpu_fan_ctrl/fan_ctrl.py
+Restart=on-failure
+RestartSec=5
+Environment=PYTHONUNBUFFERED=1
+StandardOutput=journal
+StandardError=journal
+
+[Install]
+WantedBy=multi-user.target
